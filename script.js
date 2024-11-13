@@ -39,19 +39,17 @@ const facts = [
   "some metals, like gallium, melt in your hand",
 ];
 
+const getRandomElement = (array) =>
+  array[Math.floor(Math.random() * array.length)];
+
 const changeMessage = () => {
-  let str = "";
   const num = Math.floor(Math.random() * 2);
-  if (num === 0) {
-    str = questions[Math.floor(Math.random() * questions.length)];
-    str += facts[Math.floor(Math.random() * facts.length)];
-    str += "?";
-  } else {
-    str = statements[Math.floor(Math.random() * statements.length)];
-    str += facts[Math.floor(Math.random() * facts.length)];
-    str += "!";
-  }
-  message.textContent = str;
+  const intro =
+    num === 0 ? getRandomElement(questions) : getRandomElement(statements);
+  const fact = getRandomElement(facts);
+  const punctuation = num === 0 ? "?" : "!";
+
+  message.textContent = `${intro}${fact}${punctuation}`;
 };
 
 button.addEventListener("click", changeMessage);
