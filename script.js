@@ -40,7 +40,18 @@ const facts = [
 ];
 
 const changeMessage = () => {
-  message.textContent = "A new message";
+  let str = "";
+  const num = Math.floor(Math.random() * 2);
+  if (num === 0) {
+    str = questions[Math.floor(Math.random() * questions.length)];
+    str += facts[Math.floor(Math.random() * facts.length)];
+    str += "?";
+  } else {
+    str = statements[Math.floor(Math.random() * statements.length)];
+    str += facts[Math.floor(Math.random() * facts.length)];
+    str += "!";
+  }
+  message.textContent = str;
 };
 
 button.addEventListener("click", changeMessage);
